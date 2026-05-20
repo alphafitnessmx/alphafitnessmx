@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alpha Fitness — Salvatierra, Gto</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #050508;
+      --black2: #080810;
+      --white: #e8eaff;
+      --blue: #0057FF;
+      --blue-bright: #00A3FF;
+      --blue-neon: #00cfff;
+      --blue-glow: rgba(0,87,255,0.4);
+      --blue-glow2: rgba(0,207,255,0.3);
+      --red: #d42b2b;
+      --gray: #0d0d14;
+      --gray-mid: #111118;
+      --gray-light: #5a5a80;
+      --radius: 3px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 3rem;
+      background: rgba(5,5,8,0.97);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,163,255,0.12);
+    }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-logo img { height: 42px; width: auto; filter: drop-shadow(0 0 8px rgba(0,163,255,0.5)); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--gray-light); text-decoration: none; font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--blue-neon); }
+    .nav-cta { background: var(--blue) !important; color: var(--white) !important; padding: .45rem 1.25rem !important; border-radius: var(--radius); box-shadow: 0 0 20px var(--blue-glow); transition: background .2s !important; }
+    .nav-cta:hover { background: var(--blue-bright) !important; color: var(--white) !important; }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh; display: flex; align-items: center;
+      position: relative; overflow: hidden; padding: 8rem 3rem 4rem;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 50% 70% at 75% 50%, rgba(0,87,255,0.1) 0%, transparent 65%),
+        radial-gradient(ellipse 25% 35% at 10% 90%, rgba(0,163,255,0.06) 0%, transparent 55%),
+        repeating-linear-gradient(0deg, transparent, transparent 80px, rgba(0,163,255,0.025) 80px, rgba(0,163,255,0.025) 81px),
+        repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(0,163,255,0.025) 80px, rgba(0,163,255,0.025) 81px);
+    }
+
+    /* Garras hero - mas visibles */
+    .hero-garras-right {
+      position: absolute; right: -3rem; top: 45%;
+      transform: translateY(-50%);
+      width: 52vw; max-width: 680px;
+      opacity: 0.18;
+      pointer-events: none;
+      filter: invert(1) drop-shadow(0 0 12px rgba(0,163,255,0.3));
+    }
+    .hero-garras-left {
+      position: absolute; left: -4rem; bottom: 5%;
+      width: 20vw; max-width: 260px;
+      opacity: 0.08;
+      pointer-events: none;
+      filter: invert(1);
+      transform: scaleX(-1) rotate(-15deg);
+    }
+
+    .hero-content { position: relative; z-index: 2; max-width: 750px; }
+    .hero-slogan { margin-bottom: 1.25rem; }
+    .hero-slogan img { height: 24px; opacity: .8; filter: invert(1); }
+
+    .hero-logo-neon {
+      width: 130px; height: auto; margin-bottom: 1.5rem;
+      filter: drop-shadow(0 0 30px rgba(0,163,255,0.7)) hue-rotate(200deg) saturate(2.5) brightness(1.1);
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+    @keyframes pulse-glow {
+      0%, 100% { filter: drop-shadow(0 0 22px rgba(0,163,255,0.5)) hue-rotate(200deg) saturate(2.5) brightness(1.1); }
+      50% { filter: drop-shadow(0 0 50px rgba(0,207,255,0.9)) hue-rotate(200deg) saturate(3) brightness(1.2); }
+    }
+
+    .hero-wordmark { height: 80px; width: auto; margin-bottom: 1.75rem; display: block; }
+
+    .hero-sub { font-size: 1rem; color: var(--gray-light); max-width: 460px; line-height: 1.75; margin-bottom: 2.5rem; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary { background: var(--blue); color: var(--white); padding: .9rem 2rem; text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; border-radius: var(--radius); box-shadow: 0 0 24px var(--blue-glow); transition: background .2s, transform .2s, box-shadow .2s; }
+    .btn-primary:hover { background: var(--blue-bright); transform: translateY(-2px); box-shadow: 0 0 36px var(--blue-glow2); }
+    .btn-secondary { border: 1px solid rgba(0,163,255,0.35); color: var(--white); padding: .9rem 2rem; text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; border-radius: var(--radius); transition: border-color .2s, transform .2s; }
+    .btn-secondary:hover { border-color: var(--blue-neon); transform: translateY(-2px); }
+
+    .hero-stats { position: absolute; right: 3rem; bottom: 4rem; display: flex; gap: 3rem; }
+    .stat { text-align: center; }
+    .stat-num { font-family: 'Barlow Condensed', sans-serif; font-size: 3.5rem; font-weight: 900; color: var(--blue-neon); line-height: 1; text-shadow: 0 0 24px rgba(0,207,255,0.5); }
+    .stat-label { font-size: .7rem; color: var(--gray-light); letter-spacing: .12em; text-transform: uppercase; margin-top: .25rem; }
+
+    /* SECTIONS */
+    section { padding: 6rem 3rem; }
+    .section-tag { font-size: .7rem; letter-spacing: .25em; text-transform: uppercase; color: var(--blue-neon); margin-bottom: 1rem; display: flex; align-items: center; gap: .75rem; }
+    .section-tag::before { content: ''; display: inline-block; width: 24px; height: 2px; background: var(--blue-bright); box-shadow: 0 0 8px var(--blue-bright); }
+    .section-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 900; line-height: 1; text-transform: uppercase; margin-bottom: 1.5rem; letter-spacing: .03em; }
+
+    /* HORARIOS */
+    #horarios { background: var(--gray); position: relative; overflow: hidden; }
+    .section-garras {
+      position: absolute; right: -2rem; bottom: -2rem;
+      width: 30vw; max-width: 380px;
+      opacity: 0.12;
+      pointer-events: none;
+      filter: invert(1) drop-shadow(0 0 8px rgba(0,163,255,0.2));
+    }
+    .horarios-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; margin-top: 3rem; max-width: 800px; position: relative; z-index: 1; }
+    .horario-card { background: var(--gray-mid); padding: 1.75rem; border-radius: var(--radius); border-left: 3px solid var(--blue); box-shadow: 0 0 20px rgba(0,87,255,0.06); transition: box-shadow .2s, transform .2s; }
+    .horario-card:hover { box-shadow: 0 0 30px rgba(0,163,255,0.18); transform: translateY(-2px); }
+    .horario-dia { font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; margin-bottom: .5rem; }
+    .horario-hora { font-size: 1.05rem; color: var(--blue-neon); font-weight: 500; }
+    .horario-closed { border-left-color: #2a2a3a; }
+    .horario-closed .horario-hora { color: var(--gray-light); }
+
+    /* PRECIOS */
+    #precios { background: var(--black2); position: relative; overflow: hidden; }
+    .precios-garras {
+      position: absolute; left: -3rem; top: 50%;
+      transform: translateY(-50%) scaleX(-1);
+      width: 22vw; max-width: 300px;
+      opacity: 0.1;
+      pointer-events: none;
+      filter: invert(1);
+    }
+    .precios-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin-top: 3rem; position: relative; z-index: 1; }
+    .precio-card { background: var(--gray); border: 1px solid rgba(0,87,255,0.1); border-radius: var(--radius); padding: 1.75rem; transition: border-color .2s, transform .2s, box-shadow .2s; position: relative; overflow: hidden; }
+    .precio-card:hover { border-color: rgba(0,163,255,0.5); transform: translateY(-4px); box-shadow: 0 0 30px rgba(0,87,255,0.12); }
+    .precio-card.featured { border-color: rgba(0,163,255,0.3); background: linear-gradient(135deg, rgba(0,87,255,0.07), var(--gray)); }
+    .precio-badge { position: absolute; top: 1rem; right: 1rem; background: var(--blue); font-size: .6rem; letter-spacing: .15em; text-transform: uppercase; padding: .25rem .6rem; border-radius: var(--radius); font-weight: 600; box-shadow: 0 0 10px var(--blue-glow); }
+    .precio-tipo { font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gray-light); margin-bottom: .75rem; }
+    .precio-nombre { font-family: 'Barlow Condensed', sans-serif; font-size: 1.6rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 1rem; }
+    .precio-amount { font-family: 'Barlow Condensed', sans-serif; font-size: 3.2rem; font-weight: 900; color: var(--blue-neon); line-height: 1; text-shadow: 0 0 20px rgba(0,207,255,0.3); }
+    .precio-amount.red-price { color: var(--red); text-shadow: none; }
+    .precio-amount span { font-family: 'DM Sans', sans-serif; font-size: .9rem; color: var(--gray-light); font-weight: 400; }
+    .precio-note { font-size: .8rem; color: var(--gray-light); margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.04); line-height: 1.5; }
+    .inscripcion-note { margin-top: 2rem; padding: 1.25rem 1.5rem; background: var(--gray); border-left: 3px solid var(--blue-neon); border-radius: var(--radius); font-size: .9rem; color: var(--gray-light); max-width: 600px; }
+    .inscripcion-note strong { color: var(--blue-neon); }
+
+    /* CONTACTO */
+    #contacto { background: var(--gray); position: relative; overflow: hidden; }
+    .contacto-garras {
+      position: absolute; right: -2rem; top: 2rem;
+      width: 18vw; max-width: 240px;
+      opacity: 0.09;
+      pointer-events: none;
+      filter: invert(1);
+    }
+    .contacto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 3rem; position: relative; z-index: 1; }
+    .contacto-info { display: flex; flex-direction: column; gap: 1.5rem; }
+    .contacto-item { display: flex; align-items: flex-start; gap: 1rem; }
+    .contacto-icon { width: 42px; height: 42px; background: var(--gray-mid); border: 1px solid rgba(0,163,255,0.15); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .contacto-icon img { width: 22px; height: 22px; object-fit: contain; }
+    .contacto-item-label { font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; color: var(--gray-light); margin-bottom: .25rem; }
+    .contacto-item-value { font-size: .95rem; color: var(--white); }
+    .contacto-item-value a { color: var(--white); text-decoration: none; transition: color .2s; }
+    .contacto-item-value a:hover { color: var(--blue-neon); }
+
+    .redes-titulo { font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--blue-neon); margin-bottom: .75rem; margin-top: 2rem; }
+    .redes-grid { display: flex; gap: .75rem; flex-wrap: wrap; }
+    .red-link { display: flex; align-items: center; gap: .6rem; background: var(--gray-mid); border: 1px solid rgba(0,163,255,0.12); padding: .6rem 1rem; border-radius: var(--radius); text-decoration: none; color: var(--white); font-size: .82rem; font-weight: 500; transition: border-color .2s, transform .2s, box-shadow .2s; }
+    .red-link:hover { border-color: var(--blue-neon); transform: translateY(-2px); box-shadow: 0 0 16px rgba(0,163,255,0.12); }
+    .red-link img { width: 20px; height: 20px; object-fit: contain; border-radius: 4px; }
+
+    .mapa-container { margin-top: 2rem; border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(0,163,255,0.12); }
+    .mapa-container iframe { width: 100%; height: 300px; border: none; filter: grayscale(1) brightness(0.65); }
+
+    /* FORM */
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label { display: block; font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; color: var(--gray-light); margin-bottom: .5rem; font-weight: 500; }
+    .form-group input, .form-group textarea, .form-group select { width: 100%; background: var(--gray-mid); border: 1px solid rgba(0,87,255,0.15); border-radius: var(--radius); padding: .85rem 1rem; color: var(--white); font-family: 'DM Sans', sans-serif; font-size: .9rem; outline: none; transition: border-color .2s, box-shadow .2s; }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--blue-bright); box-shadow: 0 0 12px rgba(0,163,255,0.18); }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-group select option { background: var(--gray-mid); }
+    .btn-form { width: 100%; background: var(--blue); color: var(--white); border: none; padding: 1rem; font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; border-radius: var(--radius); cursor: pointer; box-shadow: 0 0 24px var(--blue-glow); transition: background .2s, box-shadow .2s; }
+    .btn-form:hover { background: var(--blue-bright); box-shadow: 0 0 36px var(--blue-glow2); }
+
+    /* FOOTER */
+    footer { background: var(--black); padding: 2.5rem 3rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(0,163,255,0.1); flex-wrap: wrap; gap: 1rem; }
+    .footer-logo img { height: 36px; width: auto; filter: drop-shadow(0 0 8px rgba(0,163,255,0.4)) hue-rotate(200deg) saturate(2); }
+    .footer-slogan img { height: 20px; filter: invert(1); opacity: .35; }
+    .footer-copy { font-size: .75rem; color: var(--gray-light); }
+
+    /* WHATSAPP FLOAT */
+    .whatsapp-float { position: fixed; bottom: 2rem; right: 2rem; width: 54px; height: 54px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,0.4); z-index: 99; transition: transform .2s; overflow: hidden; background: #25D366; }
+    .whatsapp-float img { width: 32px; height: 32px; object-fit: contain; }
+    .whatsapp-float:hover { transform: scale(1.1); }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.5rem; }
+      #hero { padding: 6rem 1.5rem 3rem; }
+      .hero-stats { position: static; margin-top: 3rem; }
+      .contacto-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+    }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-up { animation: fadeUp .7s ease forwards; }
+    .delay-1 { animation-delay: .1s; opacity: 0; }
+    .delay-2 { animation-delay: .25s; opacity: 0; }
+    .delay-3 { animation-delay: .4s; opacity: 0; }
+    .delay-4 { animation-delay: .55s; opacity: 0; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="A_Neon.png" alt="Alpha Fitness">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#horarios">Horarios</a></li>
+    <li><a href="#precios">Precios</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="#contacto" class="nav-cta">Unete ahora</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="hero-bg"></div>
+  <img src="Garras_Alpha_Fitness.png" class="hero-garras-right" alt="">
+  <img src="Garras_Alpha_Fitness.png" class="hero-garras-left" alt="">
+  <div class="hero-content">
+    <div class="hero-slogan fade-up">
+      <img src="Be_The_Alpha.png" alt="Be The Alpha">
+    </div>
+    <img src="A_Neon.png" class="hero-logo-neon fade-up delay-1" alt="Alpha Fitness">
+    <img src="Alpha_Fitness_Logo.PNG" class="hero-wordmark fade-up delay-2" alt="Alpha Fitness">
+    <p class="hero-sub fade-up delay-3">6 anos forjando resultados en Salvatierra. Equipamiento de calidad, ambiente serio y precios accesibles para que no tengas pretextos.</p>
+    <div class="hero-btns fade-up delay-4">
+      <a href="#precios" class="btn-primary">Ver membresias</a>
+      <a href="#contacto" class="btn-secondary">Contactanos</a>
+    </div>
+  </div>
+  <div class="hero-stats fade-up delay-4">
+    <div class="stat"><div class="stat-num">6+</div><div class="stat-label">Anos</div></div>
+    <div class="stat"><div class="stat-num">2</div><div class="stat-label">Pisos</div></div>
+    <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Maquinas</div></div>
+  </div>
+</section>
+
+<section id="horarios">
+  <img src="Garras_Alpha_Fitness.png" class="section-garras" alt="">
+  <div class="section-tag">Horarios</div>
+  <h2 class="section-title">CUANDO ENTRENAR</h2>
+  <p style="color:var(--gray-light);max-width:480px;line-height:1.75">Sin pretextos — abrimos desde temprano hasta tarde para que siempre encuentres tu momento.</p>
+  <div class="horarios-grid">
+    <div class="horario-card">
+      <div class="horario-dia">Lunes — Viernes</div>
+      <div class="horario-hora">6:00 am — 10:00 pm</div>
+    </div>
+    <div class="horario-card">
+      <div class="horario-dia">Sabado</div>
+      <div class="horario-hora">7:00 am — 3:00 pm</div>
+    </div>
+    <div class="horario-card horario-closed">
+      <div class="horario-dia">Domingo</div>
+      <div class="horario-hora">Cerrado</div>
+    </div>
+  </div>
+</section>
+
+<section id="precios">
+  <img src="Garras_Alpha_Fitness.png" class="precios-garras" alt="">
+  <div class="section-tag">Membresias</div>
+  <h2 class="section-title">ELIGE TU PLAN</h2>
+  <div class="precios-grid">
+    <div class="precio-card">
+      <div class="precio-tipo">General</div>
+      <div class="precio-nombre">Mensualidad</div>
+      <div class="precio-amount">$400 <span>/ mes</span></div>
+      <div class="precio-note">Acceso completo a todas las instalaciones</div>
+    </div>
+    <div class="precio-card featured">
+      <div class="precio-badge">Mejor valor</div>
+      <div class="precio-tipo">General</div>
+      <div class="precio-nombre">Bimestral</div>
+      <div class="precio-amount">$700 <span>/ 2 meses</span></div>
+      <div class="precio-note">Ahorra $100 pagando dos meses</div>
+    </div>
+    <div class="precio-card">
+      <div class="precio-tipo">Estudiantes</div>
+      <div class="precio-nombre">Mensualidad</div>
+      <div class="precio-amount">$300 <span>/ mes</span></div>
+      <div class="precio-note">Presenta credencial vigente</div>
+    </div>
+    <div class="precio-card featured">
+      <div class="precio-badge">Mejor valor</div>
+      <div class="precio-tipo">Estudiantes</div>
+      <div class="precio-nombre">Bimestral</div>
+      <div class="precio-amount">$500 <span>/ 2 meses</span></div>
+      <div class="precio-note">Ahorra $100 pagando dos meses</div>
+    </div>
+    <div class="precio-card">
+      <div class="precio-tipo">Pase semanal</div>
+      <div class="precio-nombre">1 Semana</div>
+      <div class="precio-amount red-price">$200</div>
+      <div class="precio-note">Acceso de lunes a domingo</div>
+    </div>
+    <div class="precio-card">
+      <div class="precio-tipo">Pase quincenal</div>
+      <div class="precio-nombre">2 Semanas</div>
+      <div class="precio-amount red-price">$250</div>
+      <div class="precio-note">La opcion mas flexible</div>
+    </div>
+    <div class="precio-card">
+      <div class="precio-tipo">Visita</div>
+      <div class="precio-nombre">Dia suelto</div>
+      <div class="precio-amount red-price">$50</div>
+      <div class="precio-note">Entra un dia sin compromiso</div>
+    </div>
+  </div>
+  <div class="inscripcion-note">
+    <strong>Inscripcion: $100</strong> — Se cobra al registrarte por primera vez o si dejas de pagar por mas de 3 meses.
+  </div>
+</section>
+
+<section id="contacto">
+  <img src="Garras_Alpha_Fitness.png" class="contacto-garras" alt="">
+  <div class="section-tag">Contacto</div>
+  <h2 class="section-title">HABLEMOS</h2>
+  <div class="contacto-grid">
+    <div>
+      <div class="contacto-info">
+        <div class="contacto-item">
+          <div class="contacto-icon">
+            <img src="WhatsApp_logo.png" alt="WhatsApp">
+          </div>
+          <div>
+            <div class="contacto-item-label">WhatsApp</div>
+            <div class="contacto-item-value"><a href="https://wa.me/524661104203">466 110 4203</a></div>
+          </div>
+        </div>
+        <div class="contacto-item">
+          <div class="contacto-icon" style="font-size:.7rem;font-weight:700;color:var(--blue-neon);letter-spacing:.05em;">MAP</div>
+          <div>
+            <div class="contacto-item-label">Direccion</div>
+            <div class="contacto-item-value"><a href="https://maps.app.goo.gl/xU3M3Mpe7kTZW4tz6" target="_blank">Portal del Carmen 238, Salvatierra Centro, CP 38900</a></div>
+          </div>
+        </div>
+        <div class="contacto-item">
+          <div class="contacto-icon" style="font-size:.65rem;font-weight:700;color:var(--blue-neon);">MAIL</div>
+          <div>
+            <div class="contacto-item-label">Email</div>
+            <div class="contacto-item-value"><a href="mailto:alphafitness.salva@gmail.com">alphafitness.salva@gmail.com</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="redes-titulo">Redes sociales</div>
+      <div class="redes-grid">
+        <a href="https://instagram.com/alpha.fitnessmx" target="_blank" class="red-link">
+          <img src="instagram_logo.webp" alt="Instagram"> Instagram
+        </a>
+        <a href="https://facebook.com/alphafitnessmx" target="_blank" class="red-link">
+          <img src="Facebook_Logo.png" alt="Facebook"> Facebook
+        </a>
+        <a href="https://tiktok.com/@alpha_fitnessmx" target="_blank" class="red-link">
+          <img src="tiktok_logo.webp" alt="TikTok"> TikTok
+        </a>
+        <a href="https://wa.me/524661104203" target="_blank" class="red-link">
+          <img src="WhatsApp_logo.png" alt="WhatsApp"> WhatsApp
+        </a>
+      </div>
+      <div class="mapa-container">
+        <iframe src="https://maps.google.com/maps?q=Portal+del+Carmen+238+Salvatierra+Gto&output=embed" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div>
+      <form onsubmit="enviarFormulario(event)">
+        <div class="form-group">
+          <label>Nombre completo</label>
+          <input type="text" id="nombre" placeholder="Tu nombre" required>
+        </div>
+        <div class="form-group">
+          <label>Telefono</label>
+          <input type="tel" id="telefono" placeholder="Tu numero de WhatsApp">
+        </div>
+        <div class="form-group">
+          <label>Asunto</label>
+          <select id="asunto">
+            <option>Quiero inscribirme</option>
+            <option>Informacion de precios</option>
+            <option>Quiero renovar mi membresia</option>
+            <option>Tengo una pregunta</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Mensaje</label>
+          <textarea id="mensaje" placeholder="Cuentanos en que te podemos ayudar..."></textarea>
+        </div>
+        <button type="submit" class="btn-form">Enviar por WhatsApp</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">
+    <img src="A_Neon.png" alt="Alpha Fitness">
+  </div>
+  <div class="footer-slogan"><img src="Be_The_Alpha.png" alt="Be The Alpha"></div>
+  <div class="footer-copy">2026 Alpha Fitness Salvatierra</div>
+</footer>
+
+<a href="https://wa.me/524661104203" class="whatsapp-float" target="_blank">
+  <img src="WhatsApp_logo.png" alt="WhatsApp">
+</a>
+
+<script>
+  function enviarFormulario(e) {
+    e.preventDefault();
+    const nombre = document.getElementById('nombre').value;
+    const telefono = document.getElementById('telefono').value;
+    const asunto = document.getElementById('asunto').value;
+    const mensaje = document.getElementById('mensaje').value;
+    const texto = encodeURIComponent("Hola Alpha Fitness!\n\nNombre: " + nombre + "\nTelefono: " + telefono + "\nAsunto: " + asunto + "\nMensaje: " + mensaje);
+    window.open("https://wa.me/524661104203?text=" + texto, '_blank');
+  }
+</script>
+</body>
+</html>
