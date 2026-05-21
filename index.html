@@ -32,10 +32,10 @@
       padding: 1rem 3rem;
       background: rgba(5,5,8,0.97);
       backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(0,163,255,0.12);
+      
     }
     .nav-logo { display: flex; align-items: center; text-decoration: none; }
-    .nav-logo img { height: 42px; width: auto; filter: drop-shadow(0 0 8px rgba(0,163,255,0.5)); }
+    .nav-logo img { height: 100px; width: auto; filter: drop-shadow(0 0 8px rgba(0,163,255,0.5)); }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a { color: var(--gray-light); text-decoration: none; font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; transition: color .2s; }
     .nav-links a:hover { color: var(--blue-neon); }
@@ -78,17 +78,10 @@
     .hero-slogan { margin-bottom: 1.25rem; }
     .hero-slogan img { height: 24px; opacity: .8; filter: invert(1); }
 
-    .hero-logo-neon {
-      width: 130px; height: auto; margin-bottom: 1.5rem;
-      filter: drop-shadow(0 0 30px rgba(0,163,255,0.7)) hue-rotate(200deg) saturate(2.5) brightness(1.1);
-      animation: pulse-glow 3s ease-in-out infinite;
-    }
-    @keyframes pulse-glow {
-      0%, 100% { filter: drop-shadow(0 0 22px rgba(0,163,255,0.5)) hue-rotate(200deg) saturate(2.5) brightness(1.1); }
       50% { filter: drop-shadow(0 0 50px rgba(0,207,255,0.9)) hue-rotate(200deg) saturate(3) brightness(1.2); }
     }
 
-    .hero-wordmark { height: 80px; width: auto; margin-bottom: 1.75rem; display: block; }
+    .hero-wordmark { height: 300px; width: auto; margin-bottom: 1.75rem; display: block; }
 
     .hero-sub { font-size: 1rem; color: var(--gray-light); max-width: 460px; line-height: 1.75; margin-bottom: 2.5rem; }
     .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
@@ -189,7 +182,7 @@
 
     /* FOOTER */
     footer { background: var(--black); padding: 2.5rem 3rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(0,163,255,0.1); flex-wrap: wrap; gap: 1rem; }
-    .footer-logo img { height: 36px; width: auto; filter: drop-shadow(0 0 8px rgba(0,163,255,0.4)) hue-rotate(200deg) saturate(2); }
+    .footer-logo img { height: 80px; width: auto; filter: drop-shadow(0 0 8px rgba(0,163,255,0.4)) hue-rotate(200deg) saturate(2); }
     .footer-slogan img { height: 20px; filter: invert(1); opacity: .35; }
     .footer-copy { font-size: .75rem; color: var(--gray-light); }
 
@@ -238,7 +231,6 @@
     <div class="hero-slogan fade-up">
       <img src="Be_The_Alpha.png" alt="Be The Alpha">
     </div>
-    <img src="A_Neon.png" class="hero-logo-neon fade-up delay-1" alt="Alpha Fitness">
     <img src="Alpha_Fitness_Logo.PNG" class="hero-wordmark fade-up delay-2" alt="Alpha Fitness">
     <p class="hero-sub fade-up delay-3">6 anos forjando resultados en Salvatierra. Equipamiento de calidad, ambiente serio y precios accesibles para que no tengas pretextos.</p>
     <div class="hero-btns fade-up delay-4">
@@ -346,14 +338,14 @@
           </div>
         </div>
         <div class="contacto-item">
-          <div class="contacto-icon" style="font-size:.7rem;font-weight:700;color:var(--blue-neon);letter-spacing:.05em;">MAP</div>
+          <div class="contacto-icon"><img src="Google_Maps_logo.png" alt="Maps"></div>
           <div>
             <div class="contacto-item-label">Direccion</div>
             <div class="contacto-item-value"><a href="https://maps.app.goo.gl/xU3M3Mpe7kTZW4tz6" target="_blank">Portal del Carmen 238, Salvatierra Centro, CP 38900</a></div>
           </div>
         </div>
         <div class="contacto-item">
-          <div class="contacto-icon" style="font-size:.65rem;font-weight:700;color:var(--blue-neon);">MAIL</div>
+          <div class="contacto-icon"><img src="gmail_logo.webp" alt="Gmail"></div>
           <div>
             <div class="contacto-item-label">Email</div>
             <div class="contacto-item-value"><a href="mailto:alphafitness.salva@gmail.com">alphafitness.salva@gmail.com</a></div>
